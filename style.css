@@ -1,0 +1,389 @@
+/* --------------------------- */
+/* ----- General Styling ----- */
+/* --------------------------- */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Exo", sans-serif;
+  background-color: #e0dcd3;
+  color: rgb(27, 27, 27);
+  font-size: 18px;
+}
+
+h3 {
+  margin-bottom: 1em;
+}
+
+p {
+  font-family: "Share Tech Mono", monospace;
+}
+
+footer {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+  font-size: small;
+}
+
+/* ------------------------ */
+/* ----- LANDING PAGE ----- */
+/* ------------------------ */
+.landing {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: table;
+  z-index: -1;
+}
+
+.home-wrap {
+  clip: rect(0, auto, auto, 0);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.home-inner {
+  background-image: url(assets/home-office.jpg);
+  position: fixed;
+  display: table;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.caption {
+  width: 100%;
+  max-width: 100%;
+  position: absolute;
+  top: 40%;
+  z-index: 1;
+  color: #e0dcd3;
+  text-shadow: 3px 3px 2px black;
+}
+
+.caption .title, .caption .text {
+  font-family: "Share Tech Mono", monospace;
+}
+
+.caption .title {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+/*------------------------*/
+/*----- SECTION TAGS -----*/
+/*------------------------*/
+.sub-container {
+  padding: 20px 70px 20px 70px;
+}
+
+.sub-container h3 {
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  margin-top: 1em;
+}
+
+.sub-container p {
+  margin-bottom: 2em;
+}
+
+.center {
+  text-align: center;
+  margin: auto;
+}
+
+.card-text {
+  font-size: 15px;
+}
+
+.card-body h4 {
+  font-size: 20px;
+}
+
+.card {
+  width: 18rem;
+  background-color:rgb(233, 233, 233);
+}
+
+.card a {
+  color: rgb(27,27,27);
+}
+
+.card a:hover {
+  text-decoration: none;
+  color:  rgb(255, 123, 0, 0.8);
+  transition: 0.6s ease;
+}
+
+.list-group {
+  font-size: 16px;
+  padding: 0;
+}
+
+.bg-dark {
+  background: rgb(27, 27, 27) !important;
+  color: #e0dcd3;
+  box-shadow: 3px 0px 17px 0px gray;
+}
+
+.bg-dark .card-body {
+  color: rgb(27, 27, 27);
+  font-family: "Share Tech Mono", monospace;
+}
+
+.text-align-right {
+  text-align: right;
+}
+
+.media-icon {
+  color: #e0dcd3;
+  margin: 0 5px 0 5px;
+}
+
+.media-icon:hover {
+  color: rgb(255, 123, 0, 0.8);
+  transition: 0.6s ease;
+}
+
+.small-font {
+  font-size: x-small;
+}
+
+.fa-laptop-code {
+  color: rgb(27, 27, 27, 0.92);
+  margin-bottom: 0.35em;
+}
+
+/* ------------------------ */
+/* ----- PROGRESS BAR ----- */
+/* ------------------------ */
+.progress-wrap {
+  width: 100%;
+  float: left;
+  margin-bottom: 10px;
+}
+.progress-wrap h6 {
+  font-size: 16px;
+  display: block;
+  margin-bottom: 10px;
+  float: left;
+  width: 100%;
+}
+
+.progress-wrap h6 .name-left {
+  float: left;
+}
+
+.progress-wrap h6 .value-right {
+  float: right;
+}
+
+.progress {
+  width: 100%;
+  float: left;
+  height: 5px;
+  box-shadow: none;
+}
+
+.progress-bar {
+  background-color: #2f3c4f;
+  height: 5px;
+  display: block;
+  box-shadow: none;
+}
+
+.row {
+  margin-bottom: 20px;
+}
+
+/* progress bar colors */
+.progress-bar.progress-bar-1 {
+  background-color: #2980b9 !important;
+}
+.progress-bar.progress-bar-2 {
+  background-color: #c0392b !important;
+}
+.progress-bar.progress-bar-3 {
+  background-color: #d35400 !important;
+}
+.progress-bar.progress-bar-4 {
+  background-color: #8e44ad !important;
+}
+.progress-bar.progress-bar-5 {
+  background-color: #27ae60 !important;
+}
+.progress-bar.progress-bar-6 {
+  background-color: #aca000 !important;
+}
+
+/* ----------------------------- */
+/* TIMELINE by Kelsey Santangelo */
+/* -- with some modifications -- */
+/* ----------------------------- */
+
+/*-- GENERAL STYLES --*/
+.timeline {
+  line-height: 1.4em;
+  list-style: none;
+  margin-left: 40px;
+  padding: 0;
+  width: 100%;
+}
+.timeline h1, .timeline h2, .timeline h3, .timeline h4, .timeline h5, .timeline h6 {
+  line-height: inherit;
+}
+
+/*----- TIMELINE ITEM -----*/
+.timeline-item {
+  padding-left: 40px;
+  position: relative;
+}
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+/*----- TIMELINE INFO -----*/
+.timeline-info {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin: 0 0 .5em 0;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/*----- TIMELINE MARKER -----*/
+.timeline-marker {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 15px;
+}
+.timeline-marker:before {
+  background:rgb(255, 123, 0, 0.8);
+  border: 3px solid transparent;
+  border-radius: 100%;
+  content: "";
+  display: block;
+  height: 15px;
+  position: absolute;
+  top: 4px;
+  left: 0;
+  width: 15px;
+  transition: background 0.3s ease-in-out, border 0.3s ease-in-out;
+}
+.timeline-marker:after {
+  content: "";
+  width: 3px;
+  background: rgb(27, 27, 27, 0.7);
+  display: block;
+  position: absolute;
+  top: 24px;
+  bottom: 0;
+  left: 6px;
+}
+.timeline-item:last-child .timeline-marker:after {
+  content: none;
+}
+
+.timeline-item:not(.period):hover .timeline-marker:before {
+  background: transparent;
+  border: 3px solid rgb(255, 123, 0);
+}
+
+/*----- TIMELINE CONTENT -----*/
+.timeline-content {
+  padding-bottom: 40px;
+}
+.timeline-content p:last-child {
+  margin-bottom: 0;
+}
+
+
+.fa-user-graduate, .fa-briefcase {
+  color: rgb(27, 27, 27, 0.92);
+}
+
+.fa-user-graduate {
+  margin-left: -25px;
+}
+
+.fa-briefcase {
+  margin-left: -29px;
+}
+
+/*----- TIMELINE PERIOD -----*/
+.period {
+  padding: 0;
+}
+.period .timeline-info {
+  display: none;
+}
+.period .timeline-marker:before {
+  background: transparent;
+  content: "";
+  width: 15px;
+  height: auto;
+  border: none;
+  border-radius: 0;
+  top: 0;
+  bottom: 30px;
+  position: absolute;
+}
+.period .timeline-marker:after {
+  content: "";
+  height: 60px;
+  top: auto;
+}
+.period .timeline-content {
+  padding: 40px 0 70px;
+}
+.period .timeline-title {
+  margin: 0;
+}
+
+/*----------------------------------------------
+MOD: TIMELINE SPLIT
+----------------------------------------------*/
+@media (min-width: 768px) {
+  .timeline-split .timeline, .timeline-centered .timeline {
+    display: table;
+  }
+  .timeline-split .timeline-item, .timeline-centered .timeline-item {
+    display: table-row;
+    padding: 0;
+  }
+  .timeline-split .timeline-info, .timeline-centered .timeline-info,
+  .timeline-split .timeline-marker,
+  .timeline-centered .timeline-marker,
+  .timeline-split .timeline-content,
+  .timeline-centered .timeline-content,
+  .timeline-split .period .timeline-info,
+  .timeline-centered .period .timeline-info {
+    display: table-cell;
+    vertical-align: top;
+  }
+  .timeline-split .timeline-marker, .timeline-centered .timeline-marker {
+    position: relative;
+  }
+  .timeline-split .timeline-content, .timeline-centered .timeline-content {
+    padding-left: 30px;
+  }
+  .timeline-split .timeline-info, .timeline-centered .timeline-info {
+    padding-right: 30px;
+  }
+  .timeline-split .period .timeline-title, .timeline-centered .period .timeline-title {
+    position: relative;
+    left: -45px;
+  }
+}
