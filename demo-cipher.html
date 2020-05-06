@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/demo-cipher.css">
+    <title>Vigenere Cipher Demo</title>
+</head>
+
+<body>
+
+    <h2>Vigenère Cipher Demo</h2>
+    <p style="color:red">Not implement yet! Coming soon...</p>
+    <small>Note: This page is <b>not</b> optimized for small devices (e.g. smartphones)</small>
+
+    <h3>How It Works</h3>
+    <p class="source">
+        From <a href="https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher"> Wikipedia</a>:
+    </p>
+
+    <img src="/assets/tabula-recta.png" alt="Tabula Recta">
+    <blockquote>
+        <p>" In a Caesar cipher, each letter of the alphabet is
+            shifted along some number of places. For example, in a Caesar cipher of shift 3, <code>A</code> would become
+            <code>D</code>, <code>B</code> would become <code>E</code>, <code>Y</code> would become <code>B</code> and
+            so on. The Vigenère cipher has several Caesar ciphers in sequence with different shift values.
+        </p>
+        <p>To encrypt, a table of alphabets can be used, termed a tabula recta, <i>Vigenère square</i> or <i>Vigenère
+                table</i>. It has
+            the alphabet written out 26 times in different rows, each alphabet shifted cyclically to the left compared
+            to the previous alphabet, corresponding to the 26 possible Caesar ciphers. At different points in the
+            encryption process, the cipher uses a different alphabet from one of the rows. The alphabet used at each
+            point depends on a repeating keyword.
+        </p>
+        <p>For example, suppose that the plaintext to be encrypted is
+        </p>
+        <dl>
+            <dd><code>ATTACKATDAWN</code>.</dd>
+        </dl>
+        <p>The person sending the message chooses a keyword and repeats it until it matches the length of the plaintext,
+            for example, the keyword "LEMON":
+        </p>
+        <dl>
+            <dd><code>LEMONLEMONLE</code></dd>
+        </dl>
+        <p>Each row starts with a key letter. The rest of the row holds the letters A to Z (in shifted order). Although
+            there are 26 key rows shown, a code will use only as many keys (different alphabets) as there are unique
+            letters in the key string, here just 5 keys: {L, E, M, O, N}. For successive letters of the message,
+            successive letters of the key string will be taken and each message letter enciphered by using its
+            corresponding key row. The next letter of the key is chosen, and that row is gone along to find the column
+            heading that matches the message character. The letter at the intersection of [key-row, msg-col] is the
+            enciphered letter.
+        </p>
+        <p>For example, the first letter of the plaintext, <code>A</code>, is paired with <code>L</code>, the first
+            letter of the key. Therefore, row <code>L</code> and column <code>A</code> of the Vigenère square are used,
+            namely <code>L</code>. Similarly, for the second letter of the plaintext, the second letter of the key is
+            used. The letter at row <code>E</code> and column <code>T</code> is <code>X</code>. The rest of the
+            plaintext is enciphered in a similar fashion:
+        </p>
+        <table>
+            <tbody>
+                <tr>
+                    <td>Plaintext:</td>
+                    <td><code>ATTACKATDAWN</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Key:</td>
+                    <td><code>LEMONLEMONLE</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Ciphertext:</td>
+                    <td><code>LXFOPVEFRNHR</code>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Decryption is performed by going to the row in the table corresponding to the key, finding the position of
+            the ciphertext letter in that row and then using the column's label as the plaintext. For example, in row
+            <code>L</code> (from <i>L</i>EMON), the ciphertext <code>L</code> appears in column <code>A</code>, which is
+            the first plaintext letter. Next, in row <code>E</code> (from L<i>E</i>MON), the ciphertext <code>X</code>
+            is located in column <code>T</code>. Thus <code>T</code> is the second plaintext letter."
+        </p>
+    </blockquote>
+
+    <div class="grid-container">
+        <div class="grid-item">
+            <h3>Encrypt your message:</h3>
+            <fieldset>
+                <form id="encryptionForm">
+                    <label for="msg1">Message to encode: </label required><br>
+                    <textarea id="msg1" name="msg1" cols="50" rows="5" required></textarea><br>
+                    <label for="key1">Encryption Key: </label><br>
+                    <textarea id="key1" name="key1" cols="50" rows="2"></textarea>
+                    <button id="encryptionBtn">Encrypt!</button>
+                </form>
+            </fieldset>
+
+            <div class="result">
+                <h4 >Result</label><h4>
+                <textarea id="result1" cols="50" rows="7" readonly></textarea>
+            </div>
+        </div>
+
+        <div class="grid-item">
+            <h3>Decrypt your message:</h3>
+            <fieldset>
+                <form id="decryptionForm">
+                    <label for="msg2">Message to decode: </label><br>
+                    <textarea id="msg2" name="msg2" cols="50" rows="5" required></textarea><br>
+                    <label for="key2">Decryption Key: </label><br>
+                    <textarea id="key2" name="key2" cols="50" rows="2" required></textarea>
+                    <button id="decryptionBtn">Decrypt!</button>
+                </form>
+            </fieldset>
+
+
+            <div class="result">
+                <h4>Result</h4><br>
+                <textarea id="result2" cols="50" rows="7" readonly></textarea>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="center"> > <a href="index.html">Back to Portfolio</a> <</div>
+    </footer>
+    <script src="js/vigenere.js"></script>
+    <script src="js/events.js"></script>
+    <script>
+
+    </script>
+</body>
+
+</html>

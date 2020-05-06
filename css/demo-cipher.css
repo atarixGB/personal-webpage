@@ -1,0 +1,75 @@
+body {
+    font-family: Courier, monospace;
+}
+
+a {
+    text-decoration: none;
+}
+
+.align-right {
+    text-align: right;
+}
+
+button {
+    position: relative;
+    margin-top: 10px;
+}
+
+.center {
+    text-align: center;
+}
+
+blockquote {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+    font-style: italic;
+}
+
+fieldset {
+    width: 0;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-evenly;
+}
+
+h3 {
+    margin-bottom: 15px;
+}
+
+img {
+    float: right;
+    width: 300px;
+    height: 90%;
+    margin: 10px;
+}
+
+input {
+    width: 300px;
+}
+
+.result {
+    margin-top: 20px;
+    width: 300px;
+}
+
+textarea {
+    resize: vertical;
+    margin: 10px 0 20px 0;
+}
+
+footer {
+    margin: 45px;
+}
+
+@media screen and (max-width: 920px) {
+    body {
+        margin: 20px;
+    }
+    .grid-container {
+        display: block;
+        width: 100%;
+    }
+}
