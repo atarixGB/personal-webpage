@@ -1,132 +1,114 @@
 // -------- Vigenere Cipher source code ----------
 // Note: comments are in French
 
-// Fonction qui détermine la distance de décalage correspondante à chaque 
-// lettre du mot indiqué en paramètre
-let decalage = function (mot) {
-    let distance = [];
+const alphabet = "abcdefghijklmnopqrstuvwxyz";
+const tailleAlphabet = 26;
 
-    for (let i = 0; i < mot.length; i++) {
-        // si lettre minuscule...
-        if (mot.charCodeAt(i) >= 97 && mot.charCodeAt(i) <= 122) {
-            let car = mot.charCodeAt(i) - 97;
-            distance.push(car);
-        }
-
-        // si lettre majuscule...
-        else if (mot.charCodeAt(i) >= 65 && mot.charCodeAt(i) <= 90) {
-            let car = mot.charCodeAt(i) - 65;
-            distance.push(car);
-        }
-    }
-    return distance;
+// Convertit un caractère en son code ASCII correspondant
+let ascii = function (char) {
+    let resultat = char.charCodeAt(0);
+    return resultat;
 };
 
+// Vérifie si le caractère est valide (alphabet)
+let estValide = function (char) {
+    return (char >= 'a' && char <= 'z') || (char >= 'A' && char <= 'Z');
+}
 
-// Fonction principale qui encode le message selon un mot-clef
-let encoderTexte = function (message, clef) {
+// Calcule la distance de décalage par rapport à la première lettre de l'alphabet
+let obtenirDistanceDecalage = function (char) {
+    let resultat = '';
 
-    let resultat = ""; 
-    let distance = decalage(clef); // tableau contenant les distances de décalage de chaque lettre
-    let p = 0; // caractère à la position p dans le message
+    let isLowerCase = ascii(char) >= ascii('a') && ascii(char) <= ascii('z');
+    let isUpperCase = ascii(char) >= ascii('A') && ascii(char) <= ascii('Z');
 
+    if (isLowerCase) {
+        resultat = ascii(char) - ascii('a');
+    } else if (isUpperCase) {
+        resultat = ascii(char) - ascii('A');
+    }
+    return resultat;
+}
 
-    for (let i = 0; i < message.length; i++) { // boucle pour répéter les distances de décalage lorsque terminé (ex. pour "rats" = [17, 0, 19, 18], [17, 0 ,19, 18],etc.  
-        for (let j = 0; j < clef.length; j++) { // boucle pour obtenir distance de décalage correspondante
+// Pour obtenir l'index de la lettre dans l'alphabet
+let obtenirIndexDansAlphabet = function (lettre) {
+    let codeAscii = ascii(lettre);
 
-            let code = message.charCodeAt(p); // contient le code ASCII du caractère à la position p dans le message
-
-            // si le caractère à la position p est tout sauf une lettre (= caractère spécial - e.g "!@#$%..."):
-            if ((code >= 32 && code <= 64) || (code >= 91 && code <= 96) || (code >= 123 && code <= 127)) {
-
-                resultat += message.charAt(p); // ajout dans "resultat" du caractère tel quel (e.g si c'est "%", il se sera ré-inscrit "%" dans le message)
-                p++; // caractere suivant dans le message
-                j--; // évite un décalage des distances de chiffrage causé par les espaces vides (= " ") ou les caractères spéciaux
-            }
-
-            else if (code >= 97 && code <= 122) { // sinon, si le caractère à la position p est une lettre MINUSCULE...
-                let car = code + distance[j]; // addition de la distance de décalage correspondante au code ASCII du caractère en position p (étape de l'encodage)
-
-                if (car < 97 || car > 122) { // si le code ASCII obtenu est tout sauf une lettre minuscule...
-
-                    resultat += String.fromCharCode(car - 122 + 96); // ajout dans "resultat"  du caractère encodé (étape de la permutation circulaire)
-                    // "car-122" = de combien le code ASCII dépasse de la limite maximum (= distance de décalage)
-                    // "+96" = juste avant le point de départ de l'alphabet en code ASCII (= position "0" = "a")
-                } else { // sinon, si le code ASCII est une lettre minuscule => ajout dans "resultat" du caractère encodé
-                    resultat += String.fromCharCode(car); //
-                }
-                p++;
-            }
-
-            else if (code >= 65 && code <= 90) { // sinon, si le caractère est une lettre MAJUSCULE...
-                // (mêmes étapes qu'avec les lettres minuscules, seulement les codes ASCII changent 
-                let car = code + distance[j];
-
-                if (car < 65 || car > 90) {
-                    resultat += String.fromCharCode(car - 90 + 64);
-                } else {
-                    resultat += String.fromCharCode(car); //
-                }
-                p++;
-            }
-        }
+    // si majuscule, on convertit en minuscule
+    if (codeAscii >= ascii('A') && codeAscii <= ascii('Z')) {
+        codeAscii += 32;
     }
 
-    return resultat; // retourne le message encodé
-};
+    return alphabet.search(String.fromCharCode(codeAscii));
+}
 
-
-
-// Fonction qui DÉCODE le message selon un mot-clef
-// Même principe que l'encodage, mais on fait l'inverse!
-let decoderTexte = function (messageCode, clef) {
+// Encode le message avec la clef de cryptage donnée en paramètre
+let encoderMessage = function (message, clef) {
 
     let resultat = "";
-    let distance = decalage(clef);
-    let p = 0;
+    let distance = 0;
+    let positionLettre = '';
+    let positionNouvelleLettre = '';
+    let j = 0;
 
-    for (let i = 0; i < messageCode.length; i++) {
-        for (let j = 0; j < clef.length; j++) {
-            let code = messageCode.charCodeAt(p);
+    for (let i = 0; i < message.length; i++) {
 
-            if ((code >= 32 && code <= 64) || (code >= 91 && code <= 96) || (code >= 123 && code <= 127)) {
+        // si la lettre est majuscule ou minuscule
+        if (estValide(message.charAt(i)) ) {
 
-                resultat += messageCode.charAt(p);
-                p++;
-                j--;
+            if (estValide(clef.charAt(j)) ) {
+
+                // chiffrage de la lettre
+                distance = obtenirDistanceDecalage(clef.charAt(j++));
+                positionLettre = obtenirIndexDansAlphabet(message.charAt(i));
+                positionNouvelleLettre = (distance + positionLettre) % tailleAlphabet;
+                resultat += alphabet[positionNouvelleLettre];
+
+                if (j >= clef.length) { j = 0; }
             }
 
-            //pour lettre minuscule
-            else if (code >= 97 && code <= 122) {
-                let car = code - distance[j]; // soustraction de la distance de décalage correspondante au code ASCII du caractère en position p (étape du décodage)
-
-                if (car < 97 || car > 122) {
-
-                    resultat += String.fromCharCode(123 - (97 - car));
-                    // (97-car) => de combien le code ASCII dépasse de la limite minimum (= distance de décalage)
-                    // 123-(97-car) => point de départ à partir de "Z" 
-                } else {
-                    resultat += String.fromCharCode(car);
-                }
-
-                p++;
-            }
-
-            // pour lettre majuscule (mêmes étapes que lettre minuscule)
-            else if (code >= 65 && code <= 90) {
-                let car = code - distance[j];
-
-                if (car < 97 || car > 122) {
-
-                    resultat += String.fromCharCode(90 - (65 - car)); // inverse. 
-                } else {
-                    resultat += String.fromCharCode(car);
-                }
-                p++;
-            }
-
+        } else { // tout autre caractère est recopié tel quel
+            resultat += message.charAt(i);
         }
     }
 
     return resultat;
-};
+}
+
+// Décode le message avec la clef de cryptage donnée en paramètre
+let decoderMessage = function (message, clef) {
+
+    let resultat = "";
+    let distance = 0;
+    let positionNouvelleLettre = 0;
+    let positionAncienneLettre = 0;
+    let j = 0;
+
+    for (let i = 0; i < message.length; i++) {
+
+        // si la lettre est majuscule ou minuscule
+        if (estValide(message.charAt(i)) ) {
+            if (estValide(clef.charAt(j)) ) {
+
+                // déchiffrage de la lettre
+                distance = obtenirDistanceDecalage(clef.charAt(j++));
+                positionNouvelleLettre = obtenirIndexDansAlphabet(message.charAt(i));
+                positionAncienneLettre = positionNouvelleLettre - distance;
+
+                if (positionAncienneLettre < 0) {
+                    resultat += alphabet[tailleAlphabet + positionAncienneLettre];
+                } else {
+                    resultat += alphabet[positionAncienneLettre];
+                }
+
+                if (j >= clef.length) { 
+                    j = 0; 
+                }
+            }
+
+        } else { // tout autre caractère est recopié tel quel
+            resultat += message.charAt(i);
+        }
+    }
+    return resultat;
+}

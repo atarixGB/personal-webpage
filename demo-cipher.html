@@ -11,7 +11,6 @@
 <body>
 
     <h2>Vigenère Cipher Demo</h2>
-    <p style="color:red">Not implement yet! Coming soon...</p>
     <small>Note: This page is <b>not</b> optimized for small devices (e.g. smartphones)</small>
 
     <h3>How It Works</h3>
@@ -94,13 +93,14 @@
                     <textarea id="msg1" name="msg1" cols="50" rows="5" required></textarea><br>
                     <label for="key1">Encryption Key: </label><br>
                     <textarea id="key1" name="key1" cols="50" rows="2"></textarea>
-                    <button id="encryptionBtn">Encrypt!</button>
+                    <button id="encryptionBtn" onclick="validateForm">Encrypt!</button>
                 </form>
             </fieldset>
 
             <div class="result">
-                <h4 >Result</label><h4>
-                <textarea id="result1" cols="50" rows="7" readonly></textarea>
+                <h4>Result</label>
+                    <h4>
+                        <textarea id="result1" cols="50" rows="7" readonly></textarea>
             </div>
         </div>
 
@@ -125,13 +125,10 @@
     </div>
 
     <footer>
-        <div class="center"> > <a href="index.html">Back to Portfolio</a> <</div>
+        <div class="center"> > <a href="index.html">Back to Portfolio</a> < </div>
     </footer>
     <script src="js/vigenere.js"></script>
     <script src="js/events.js"></script>
-    <script>
-
-    </script>
 </body>
 
 </html>

@@ -8,7 +8,7 @@ btn1.addEventListener("click", (event) => {
     let msg1 = document.getElementById("msg1").value;
     let key1 = document.getElementById("key1").value;
 
-    document.getElementById("result1").textContent = encoderTexte(msg1,key1);
+    document.getElementById("result1").textContent = encoderMessage(msg1,key1);
 })
 
 // Decryption
@@ -20,6 +20,6 @@ btn2.addEventListener("click", (event) => {
     let msg2 = document.getElementById("msg2").value;
     let key2 = document.getElementById("key2").value;
 
-    document.getElementById("result2").textContent = decoderTexte(msg2,key2);
+    document.getElementById("result2").textContent = decoderMessage(msg2,key2);
 
 })
