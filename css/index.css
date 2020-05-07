@@ -111,7 +111,7 @@ footer {
 
 .card {
   width: 18rem;
-  background-color:rgb(233, 233, 233);
+  background-color: rgb(233, 233, 233) !important;
 }
 
 .card a {
@@ -127,6 +127,11 @@ footer {
 .list-group {
   font-size: 16px;
   padding: 0;
+
+}
+
+.list-group-item {
+  background-color: rgb(238, 238, 238) !important;
 }
 
 .bg-dark {
@@ -161,6 +166,18 @@ footer {
 .fa-laptop-code {
   color: rgb(27, 27, 27, 0.92);
   margin-bottom: 0.35em;
+}
+
+.github {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  color: #e0dcd3;
+}
+
+.github:hover {
+  color:rgb(255, 123, 0);
+  transition: 0.6s ease;
 }
 
 /* ------------------------ */
