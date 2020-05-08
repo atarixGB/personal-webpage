@@ -46,7 +46,7 @@ footer {
 }
 
 .home-inner {
-  background: url(/assets/home-office.jpg);
+  background: url(assets/home-office.jpg);
   position: fixed;
   display: table;
   top: 0;
